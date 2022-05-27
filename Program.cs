@@ -1,4 +1,5 @@
-using Newtonsoft.Json.Serialization;
+using backendAg.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,14 +9,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddCors(c =>
-{
-    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-});
-//JSON serialize
-builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
-options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore).AddNewtonsoftJson(options =>
-options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+builder.Services.AddDbContext<integerProjectC>(x => x.UseNpgsql(builder.Configuration.GetConnectionString("DevConnection")));
 
 var app = builder.Build();
 
@@ -27,6 +21,14 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
-app.UseCors (options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
 app.MapControllers();
+
 app.Run();
+
+
+
+
+
+
+

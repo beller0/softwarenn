@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "WebApplication3": {
+    "backendAg": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

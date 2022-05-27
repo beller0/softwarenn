@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -25,11 +26,11 @@ namespace backend.Controllers
     public class LoginAdministratorC : ControllerBase
     {
         private readonly integerProjectC _context;
-        private readonly IConfiguration config;
-        public LoginAdministratorC(integerProjectC _context, IConfiguration configuration)
+        
+        public LoginAdministratorC(integerProjectC _context)
         {
             this._context = _context;
-            this.config = configuration;
+            
         }
 
         [AllowAnonymous]
@@ -45,8 +46,7 @@ namespace backend.Controllers
             }
             if(HashHelper.CheckHash(login.Password, user.Password, user.sal))
             {
-                var secretKey = config.GetValue<string>("SecretKey");
-                var key = Encoding.ASCII.GetBytes(secretKey);
+
                 var userid = user.Id.ToString();
                 var claims = new ClaimsIdentity();
                 claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, login.Email, user.Username, userid));
@@ -56,7 +56,6 @@ namespace backend.Controllers
                     Subject = claims,
                     //Tiempo de expiracion
                     Expires = DateTime.UtcNow.AddHours(4),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
 
                 var tokenHandler = new JwtSecurityTokenHandler();

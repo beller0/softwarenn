@@ -266,3 +266,4 @@ H:\Users\brade\Documents\universidad\ingSofware\WebApplication3\obj\Debug\net6.0
 H:\Users\brade\Documents\universidad\ingSofware\WebApplication3\obj\Debug\net6.0\backendAg.pdb
 H:\Users\brade\Documents\universidad\ingSofware\WebApplication3\obj\Debug\net6.0\backendAg.genruntimeconfig.cache
 H:\Users\brade\Documents\universidad\ingSofware\WebApplication3\obj\Debug\net6.0\ref\backendAg.dll
+H:\Users\brade\Documents\universidad\ingSofware\WebApplication3\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

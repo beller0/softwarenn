@@ -10,9 +10,11 @@ namespace backendAg.Models
             Articles = new HashSet<Article>();
         }
 
-        public int SpecialId { get; set; }
+        public int Id { get; set; }
+        public string Username { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public string Password { get; set; } = null!;
 
-        public virtual User Special { get; set; } = null!;
         public virtual ICollection<Article> Articles { get; set; }
     }
 }

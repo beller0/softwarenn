@@ -36,19 +36,19 @@ namespace backend.Controllers
         public async Task<IActionResult> Post(LoginFa login)
         {
             //buscamos al usuario que coincida el correo
-            User user = await _context.Users.Where(x => x.Email == login.Email).FirstOrDefaultAsync();
+            Farmer user = await _context.Farmers.Where(x => x.Email == login.Email).FirstOrDefaultAsync();
             if(user == null)
             {
                 return NotFound( "No se ha encontrado el usuario");
 
             }
-            if(HashHelper.CheckHash(login.Password, user.Password, user.sal))
+            if(HashHelper.CheckHash(login.Password, user.Password, user.UserName))
             {
                 var secretKey = config.GetValue<string>("SecretKey");
                 var key = Encoding.ASCII.GetBytes(secretKey);
                 var userid = user.Id.ToString();
                 var claims = new ClaimsIdentity();
-                claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, login.Email, user.Username, userid));
+                claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, login.Email, userid));
 
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
@@ -68,7 +68,7 @@ namespace backend.Controllers
                     token = bearer_token,
                     userData = new {
                         id = user.Id,
-                        userName = user.Username
+                        userName = user.UserName
                     }
                 });
             }

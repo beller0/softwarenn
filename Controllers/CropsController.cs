@@ -87,7 +87,7 @@ namespace backendAg.Controllers
         {
           if (_context.Crops == null)
           {
-              return Problem("Entity set 'integerProjectContext.Crops'  is null.");
+              return Problem("Entity set 'integerProjectC.Crops'  is null.");
           }
             _context.Crops.Add(crop);
             await _context.SaveChangesAsync();

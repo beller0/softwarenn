@@ -87,7 +87,7 @@ namespace backendAg.Controllers
         {
           if (_context.Articles == null)
           {
-              return Problem("Entity set 'integerProjectContext.Articles'  is null.");
+              return Problem("Entity set 'integerProjectC.Articles'  is null.");
           }
             _context.Articles.Add(article);
             await _context.SaveChangesAsync();

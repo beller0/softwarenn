@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4nkKEazZoT46/GWeCvKIfuMhK6o3MLVipFjR9IKDwby0paO9mSRQQ6O/e+KyiEkSjgw7oTZXsarf5sSahGO6EQ==",
+  "dgSpecHash": "ZD7iXkDtfl6lFVf5b/KDlAWI/xFk5x5AWzwqSNC8oy5FDoPfLiI2EzXP0rWzlhBvU26nhPWfqL9NOXnexOIVdw==",
   "success": true,
-  "projectFilePath": "H:\\Users\\brade\\Documents\\universidad\\ingSofware\\WebApplication3\\backendAg.csproj",
+  "projectFilePath": "H:\\Users\\brade\\Documents\\universidad\\ingSofware\\backend\\backendAg.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\brade\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\brade\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

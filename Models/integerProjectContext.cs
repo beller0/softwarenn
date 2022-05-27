@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using backendAg.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -21,7 +20,6 @@ namespace backendAg.Models
         public virtual DbSet<Article> Articles { get; set; } = null!;
         public virtual DbSet<Crop> Crops { get; set; } = null!;
         public virtual DbSet<Farmer> Farmers { get; set; } = null!;
-        public virtual DbSet<User> Users { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -36,20 +34,17 @@ namespace backendAg.Models
         {
             modelBuilder.Entity<Administrator>(entity =>
             {
-                entity.HasKey(e => e.SpecialId)
-                    .HasName("administrator_pkey");
-
                 entity.ToTable("administrator");
 
-                entity.Property(e => e.SpecialId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("specialId");
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasDefaultValueSql("nextval('\"administrator_specialId_seq\"'::regclass)");
 
-                entity.HasOne(d => d.Special)
-                    .WithOne(p => p.Administrator)
-                    .HasForeignKey<Administrator>(d => d.SpecialId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("administrator_specialId_fkey");
+                entity.Property(e => e.Email).HasColumnName("email");
+
+                entity.Property(e => e.Password).HasColumnName("password");
+
+                entity.Property(e => e.Username).HasColumnName("username");
             });
 
             modelBuilder.Entity<Article>(entity =>
@@ -100,37 +95,17 @@ namespace backendAg.Models
 
             modelBuilder.Entity<Farmer>(entity =>
             {
-                entity.HasKey(e => e.IdFarmer)
-                    .HasName("farmer_pkey");
-
                 entity.ToTable("farmer");
 
-                entity.Property(e => e.IdFarmer)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("idFarmer");
-
-                entity.Property(e => e.CropsNumber).HasColumnName("cropsNumber");
-
-                entity.Property(e => e.FarmName).HasColumnName("farmName");
-
-                entity.HasOne(d => d.IdFarmerNavigation)
-                    .WithOne(p => p.Farmer)
-                    .HasForeignKey<Farmer>(d => d.IdFarmer)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk");
-            });
-
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.ToTable("user");
-
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasDefaultValueSql("nextval('\"farmer_idFarmer_seq\"'::regclass)");
 
                 entity.Property(e => e.Email).HasColumnName("email");
 
                 entity.Property(e => e.Password).HasColumnName("password");
 
-                entity.Property(e => e.Username).HasColumnName("username");
+                entity.Property(e => e.UserName).HasColumnName("userName");
             });
 
             OnModelCreatingPartial(modelBuilder);

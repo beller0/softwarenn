@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "H:\\Users\\brade\\Documents\\universidad\\ingSofware\\WebApplication3\\backendAg.csproj": {}
+    "H:\\Users\\brade\\Documents\\universidad\\ingSofware\\backend\\backendAg.csproj": {}
   },
   "projects": {
-    "H:\\Users\\brade\\Documents\\universidad\\ingSofware\\WebApplication3\\backendAg.csproj": {
+    "H:\\Users\\brade\\Documents\\universidad\\ingSofware\\backend\\backendAg.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Users\\brade\\Documents\\universidad\\ingSofware\\WebApplication3\\backendAg.csproj",
+        "projectUniqueName": "H:\\Users\\brade\\Documents\\universidad\\ingSofware\\backend\\backendAg.csproj",
         "projectName": "backendAg",
-        "projectPath": "H:\\Users\\brade\\Documents\\universidad\\ingSofware\\WebApplication3\\backendAg.csproj",
+        "projectPath": "H:\\Users\\brade\\Documents\\universidad\\ingSofware\\backend\\backendAg.csproj",
         "packagesPath": "C:\\Users\\brade\\.nuget\\packages\\",
-        "outputPath": "H:\\Users\\brade\\Documents\\universidad\\ingSofware\\WebApplication3\\obj\\",
+        "outputPath": "H:\\Users\\brade\\Documents\\universidad\\ingSofware\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

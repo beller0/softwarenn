@@ -10,11 +10,11 @@ namespace backendAg.Models
             Crops = new HashSet<Crop>();
         }
 
-        public int IdFarmer { get; set; }
-        public string FarmName { get; set; } = null!;
-        public int CropsNumber { get; set; }
+        public int Id { get; set; }
+        public string UserName { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public string Password { get; set; } = null!;
 
-        public virtual User IdFarmerNavigation { get; set; } = null!;
         public virtual ICollection<Crop> Crops { get; set; }
     }
 }

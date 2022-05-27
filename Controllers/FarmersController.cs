@@ -11,55 +11,55 @@ namespace backendAg.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class FarmersController : ControllerBase
     {
         private readonly integerProjectC _context;
 
-        public UsersController(integerProjectC context)
+        public FarmersController(integerProjectC context)
         {
             _context = context;
         }
 
-        // GET: api/Users
+        // GET: api/Farmers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<Farmer>>> GetFarmers()
         {
-          if (_context.Users == null)
+          if (_context.Farmers == null)
           {
               return NotFound();
           }
-            return await _context.Users.ToListAsync();
+            return await _context.Farmers.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // GET: api/Farmers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<Farmer>> GetFarmer(int id)
         {
-          if (_context.Users == null)
+          if (_context.Farmers == null)
           {
               return NotFound();
           }
-            var user = await _context.Users.FindAsync(id);
+            var farmer = await _context.Farmers.FindAsync(id);
 
-            if (user == null)
+            if (farmer == null)
             {
                 return NotFound();
             }
 
-            return user;
+            return farmer;
         }
 
-        // PUT: api/Users/5
+        // PUT: api/Farmers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutFarmer(int id, Farmer farmer)
         {
-            if (id != user.Id)
+            if (id != farmer.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
+            _context.Entry(farmer).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +67,7 @@ namespace backendAg.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!FarmerExists(id))
                 {
                     return NotFound();
                 }
@@ -80,44 +80,44 @@ namespace backendAg.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
+        // POST: api/Farmers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<Farmer>> PostFarmer(Farmer farmer)
         {
-          if (_context.Users == null)
+          if (_context.Farmers == null)
           {
-              return Problem("Entity set 'integerProjectContext.Users'  is null.");
+              return Problem("Entity set 'integerProjectC.Farmers'  is null.");
           }
-            _context.Users.Add(user);
+            _context.Farmers.Add(farmer);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return CreatedAtAction("GetFarmer", new { id = farmer.Id }, farmer);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/Farmers/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        public async Task<IActionResult> DeleteFarmer(int id)
         {
-            if (_context.Users == null)
+            if (_context.Farmers == null)
             {
                 return NotFound();
             }
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            var farmer = await _context.Farmers.FindAsync(id);
+            if (farmer == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(user);
+            _context.Farmers.Remove(farmer);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool UserExists(int id)
+        private bool FarmerExists(int id)
         {
-            return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Farmers?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

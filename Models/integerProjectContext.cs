@@ -45,6 +45,8 @@ namespace backendAg.Models
                 entity.Property(e => e.Password).HasColumnName("password");
 
                 entity.Property(e => e.Username).HasColumnName("username");
+
+                entity.Property(e => e.Token).HasColumnName("token");
             });
 
             modelBuilder.Entity<Article>(entity =>
@@ -106,6 +108,9 @@ namespace backendAg.Models
                 entity.Property(e => e.Password).HasColumnName("password");
 
                 entity.Property(e => e.UserName).HasColumnName("userName");
+
+                entity.Property(e => e.Token).HasColumnName("token");
+
             });
 
             OnModelCreatingPartial(modelBuilder);

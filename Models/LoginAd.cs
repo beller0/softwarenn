@@ -7,7 +7,7 @@ namespace backendAg.Models
 {
     public class LoginAd
     {
-        public String Email { get; set; }
-        public String Password { get; set; }
+        public String? Email { get; set; }
+        public String? Password { get; set; }
     }
 }

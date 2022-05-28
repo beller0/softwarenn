@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backendAg.Models;
+using backendAg.Helper;
 
 namespace backendAg.Controllers
 {
@@ -89,10 +90,14 @@ namespace backendAg.Controllers
           {
               return Problem("Entity set 'integerProjectC.Farmers'  is null.");
           }
+            var hash = HashHelper.Hash(farmer.Password);
+            farmer.Password = hash.Password;
+            farmer.Token = hash.Salt;
             _context.Farmers.Add(farmer);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetFarmer", new { id = farmer.Id }, farmer);
+
         }
 
         // DELETE: api/Farmers/5

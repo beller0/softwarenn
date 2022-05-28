@@ -36,7 +36,7 @@ namespace backend.Controllers
         public async Task<IActionResult> Post(LoginFa login)
         {
             //buscamos al usuario que coincida el correo
-            Farmer user = await _context.Farmers.Where(x => x.Email == login.Email).FirstOrDefaultAsync();
+            var user = await _context.Farmers.Where(x => x.Email == login.Email).FirstOrDefaultAsync();
             if(user == null)
             {
                 return NotFound( "No se ha encontrado el usuario");

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backendAg.Models;
+using backendAg.Helper;
 
 namespace backendAg.Controllers
 {
@@ -89,6 +90,10 @@ namespace backendAg.Controllers
           {
               return Problem("Entity set 'integerProjectC.Administrators'  is null.");
           }
+            var hash = HashHelper.Hash(administrator.Password);
+            administrator.Password = hash.Password;
+            administrator.Token = hash.Salt;
+            
             _context.Administrators.Add(administrator);
             await _context.SaveChangesAsync();
 

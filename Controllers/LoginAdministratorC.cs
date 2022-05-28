@@ -33,16 +33,16 @@ namespace backend.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Post(LoginFa login)
+        public async Task<IActionResult> Post(LoginAd login)
         {
             //buscamos al usuario que coincida el correo
-            Farmer user = await _context.Farmers.Where(x => x.Email == login.Email).FirstOrDefaultAsync();
+            var user = await _context.Administrators.Where(x => x.Email == login.Email).FirstOrDefaultAsync();
             if (user == null)
             {
                 return NotFound("No se ha encontrado el usuario");
 
             }
-            if (HashHelper.CheckHash(login.Password, user.Password, user.UserName))
+            if (HashHelper.CheckHash(login.Password, user.Password, user.Token))
             {
                 var secretKey = config.GetValue<string>("SecretKey");
                 var key = Encoding.ASCII.GetBytes(secretKey);
@@ -70,7 +70,7 @@ namespace backend.Controllers
                     userData = new
                     {
                         id = user.Id,
-                        userName = user.UserName
+                        userName = user.Username
                     }
                 });
             }
